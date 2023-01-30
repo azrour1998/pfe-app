@@ -17,7 +17,7 @@ class Article extends Model
         'last_arrival',
         'minimal_quantity',
         'image',
-    ]
+    ];
     
     public function fournisseur()
     {
