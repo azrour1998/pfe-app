@@ -31,6 +31,6 @@ class ArticleController extends Controller
         
 
         $article->save();
-        return redirect('home')->with('status', 'Blog Post Form Data Has Been inserted');
+        return redirect('home')->with('status', ' l\'Article a été ajouté ');
     }
 }
