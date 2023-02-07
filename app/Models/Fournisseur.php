@@ -9,7 +9,7 @@ class Fournisseur extends Model
 {
     protected $fillable = [
         'name',
-    ]
+    ];
 
     public function article()
     {
