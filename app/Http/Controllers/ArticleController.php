@@ -14,6 +14,7 @@ class ArticleController extends Controller
 
     public function addArticle(Request $request)
     {
+
         $article = new Article;
         $article->designation = $request->designation;
        
@@ -23,6 +24,8 @@ class ArticleController extends Controller
         //TODO: récuperer les fournisseur de la base de donnée
         $article->fournisseur_id = 1;
 
+        //TODO : show the team the way to get user auth ;) 
+        $article->added_by=auth()->user()->email;
         $article->last_arrival =now();
         $article->minimal_quantity = $request->minimal_quantity;
 

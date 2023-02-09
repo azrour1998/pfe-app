@@ -9,6 +9,9 @@ class Fournisseur extends Model
 {
     protected $fillable = [
         'name',
+        'adresse',
+        'telephone',
+        'added_by',
     ];
 
     public function article()
