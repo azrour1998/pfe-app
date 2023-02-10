@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Historiques;
 
 class ArticleController extends Controller
 {
@@ -14,6 +15,7 @@ class ArticleController extends Controller
 
     public function addArticle(Request $request)
     {
+
         $article = new Article;
         $article->designation = $request->designation;
        
@@ -23,6 +25,8 @@ class ArticleController extends Controller
         //TODO: récuperer les fournisseur de la base de donnée
         $article->fournisseur_id = 1;
 
+        //TODO : show the team the way to get user auth ;) 
+        $article->added_by=auth()->user()->email;
         $article->last_arrival =now();
         $article->minimal_quantity = $request->minimal_quantity;
 
@@ -31,6 +35,18 @@ class ArticleController extends Controller
         
 
         $article->save();
+        $historique= new Historiques;
+        $historique->title='article ajouté';
+        $historique->description='un article a été ajouté par :'.$article->added_by;
+        $historique->seen=false;
+        $historique->save();
         return redirect('home')->with('status', ' l\'Article a été ajouté ');
+    }
+
+    public function afficherArticle()
+    {
+        $articles= Article::all();
+        
+        return view('afficherArticle',['articles'=>$articles]);
     }
 }

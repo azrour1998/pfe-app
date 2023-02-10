@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Historiques;
+use App\Models\Article;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data= Historiques::all();
+        
+        $countHistoric=$data->count();
+        $countArticles=count(Article::all());
+    
+        return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles]);
     }
 }

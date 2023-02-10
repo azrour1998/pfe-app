@@ -16,6 +16,7 @@ class Article extends Model
         'fournisseur_id',
         'last_arrival',
         'minimal_quantity',
+        'added_by',
         'image',
     ];
     
@@ -23,5 +24,6 @@ class Article extends Model
     {
         return $this->hasMany('App\Models\Fournisseur','fournisseur_id','id');
     }
+    
 
 }
