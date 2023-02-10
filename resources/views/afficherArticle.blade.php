@@ -1,64 +1,51 @@
 @extends('layouts.app')
 @section('content')
-        <table  class="table">
-         <div class="col-md-6">
-            <thead  class="bg-light">
-                <tr >
-                <th scope="col">Désigniation</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th scope="col">Fournisseur</th>
-                <th scope="col">Minimal quantity</th>
-                <th scope="col">image</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              
+<div class="container-fluid">
 
-                </tr>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+    For more information about DataTables, please visit the <a target="_blank"
+        href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                </tr>  <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                
-
-                </tr>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                
-
-                </tr>
-            
-            </tbody>
-            </div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Désigniation</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Fournisseur</th>
+                        <th scope="col">Minimal quantity</th>
+                        <th scope="col">image</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    @foreach($articles as $article)
+                    <tr>
+                        <td>{{$article['designation']}}</td>
+                        <td>{{$article['quantity']}}</td>
+                        <td>{{$article['price']}}</td>
+                        <td>{{$article['fournisseur_id']}}</td>
+                        <td>{{$article['minimal_quantity']}}</td>
+                        <td>{{$article['image']}}</td>
+                    </tr>
+                    @endforeach
+                    
+                </tbody>
             </table>
+        </div>
+    </div>
+</div>
 
-      
+</div>
 
 
 
