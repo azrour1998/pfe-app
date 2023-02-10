@@ -22,7 +22,7 @@ class FournisseurController extends Controller
         $fournisseur->name = $request->name;
         $fournisseur->adresse =$adresse;
         $fournisseur->telephone = $request->telephone;
-        $fournisseur->added_by=auth()->user()->email;
+        $fournisseur->added_by=auth()->user();
 
         $fournisseur->save();
       
