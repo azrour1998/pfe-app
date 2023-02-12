@@ -27,6 +27,7 @@ Route::get('addArticle', [ArticleController::class, 'index']);
 
 
 Route::get('historique', [HistoriqueController::class, 'index']);
+Route::get('historique', [HistoriqueController::class, 'Historique']);
 
 
 
@@ -37,6 +38,8 @@ Route::get('addFournisseur', [FournisseurController::class, 'index']);
 Route::post('addFournisseur', [FournisseurController::class, 'addFournisseur']);
 
 Route::get('afficherArticle', [ArticleController::class, 'afficherArticle']);
+
+Route::get('afficherFournisseur', [FournisseurController::class, 'afficherFournisseur']);
 
 
 Auth::routes();
