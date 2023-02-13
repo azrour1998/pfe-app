@@ -19,7 +19,7 @@ class HistoriqueController extends Controller
    
     public function Historique()
     {
-        $historiques= Historique::all();
+        $historiques= Historique::orderBy('id', 'DESC')->get();
         
         return view('historique',['historiques'=>$historiques]);
        

@@ -46,8 +46,8 @@ class ArticleController extends Controller
 
         $article->save();
         $historique= new Historique;
-        $historique->title='article ajouté';
-        $historique->description='un article a été ajouté par :'.$article->added_by;
+        $historique->title='Un article a été ajouté';
+        $historique->description=$article->added_by.' viens d\'ajouter '.$article->quantity.' de  '.$article->designation.' au stock';
         $historique->seen=false;
         $historique->save();
         return redirect('addArticle')->with('status', ' l\'Article a été ajouté ');

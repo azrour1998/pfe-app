@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Historiques;
+use App\Models\Historique;
 use App\Models\Article;
 use App\Models\Fournisseur;
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data= Historiques::all();
+        $data= Historique::all();
         
         $countHistoric=$data->count();
         $countArticles=count(Article::all());
