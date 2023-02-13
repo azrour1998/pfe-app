@@ -33,7 +33,15 @@ class ArticleController extends Controller
         $article->minimal_quantity = $request->minimal_quantity;
 
         //TODO: cas particulier à traiter
-        $article->image = 'path/to/image';
+
+             $destination_path = 'public/images/articles';
+             $image = $request->file('image');
+             dd();
+             $image_name = $image->getClientOriginalName();
+             $path = $request->file('image')->storeAs($destination_path,$image_name);
+
+             $article->image = $image_name;
+      
         
 
         $article->save();
