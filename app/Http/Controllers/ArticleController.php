@@ -34,9 +34,9 @@ class ArticleController extends Controller
 
         //TODO: cas particulier à traiter
 
-             $destination_path = 'public/images/articles';
+             $destination_path = '/public/images/articles';
              $image = $request->file('image');
-             dd();
+            
              $image_name = $image->getClientOriginalName();
              $path = $request->file('image')->storeAs($destination_path,$image_name);
 
