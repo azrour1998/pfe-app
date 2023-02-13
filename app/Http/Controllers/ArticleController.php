@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Historiques;
+use App\Models\Historique;
 
 class ArticleController extends Controller
 {
@@ -12,9 +12,11 @@ class ArticleController extends Controller
     {
         return view('addArticle');
     }
+ 
 
     public function addArticle(Request $request)
     {
+    
 
         $article = new Article;
         $article->designation = $request->designation;
@@ -35,12 +37,12 @@ class ArticleController extends Controller
         
 
         $article->save();
-        $historique= new Historiques;
+        $historique= new Historique;
         $historique->title='article ajouté';
         $historique->description='un article a été ajouté par :'.$article->added_by;
         $historique->seen=false;
         $historique->save();
-        return redirect('home')->with('status', ' l\'Article a été ajouté ');
+        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ');
     }
 
     public function afficherArticle()
@@ -48,5 +50,6 @@ class ArticleController extends Controller
         $articles= Article::all();
         
         return view('afficherArticle',['articles'=>$articles]);
+       
     }
 }

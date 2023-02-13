@@ -29,6 +29,7 @@ class HistoriqueTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('historiques');
         //
     }
 }
