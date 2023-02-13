@@ -17,24 +17,19 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                    <th scope="col">id</th>
-                        <th scope="col">Description</th>
+                        
                         <th scope="col">title</th>
-                        <th scope="col">seen</th>
-
-                   
-              
+                        <th scope="col">Description</th>
+                            
                     </tr>
                 </thead>
                
                 <tbody>
                     @foreach($historiques as $historique)
                     <tr>
-                    <td>{{$historique['id']}}</td>
-                    <td>{{$historique['description']}}</td>
-                     <td>{{$historique['title']}}</td>
-                    <td>{{$historique['seen']}}</td>
-              
+                        <td>{{$historique['title']}}</td>
+                        <td>{{$historique['description']}}</td>
+                    </tr>
                     @endforeach
                     
                 </tbody>
