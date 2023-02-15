@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Historique;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        return view('addArticle');
+
+        $categories = DB::select('select categorie from categories');
+        return view('addArticle',['categories'=>$categories]);
     }
  
 
@@ -20,7 +23,7 @@ class ArticleController extends Controller
 
         $article = new Article;
         $article->designation = $request->designation;
-       
+        $article->category = $request->categorie;
         $article->quantity = $request->quantity;
         $article->price = $request->price;
 

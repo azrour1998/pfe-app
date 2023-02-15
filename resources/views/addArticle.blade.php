@@ -49,6 +49,20 @@
                     <input id="minimal_quantity" name="minimal_quantity" type="text" class="form-control" id="exampleFormControlInput1" >
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                <label for="exampleFormControlInput1" class="col-md-2 col-form-label text-start">Categorie</label>
+                    <div class="col-md-10">
+                        <select class="custom-select"  id="categorie" name="categorie" required>
+                             @foreach($categories as $categorie)
+                            <option value="{{$categorie->categorie}}">{{$categorie->categorie}}</option>
+                            
+                            @endforeach
+                        </select>
+                    </div>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+                </div>
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1" class="col-md-2 col-form-label text-start">Image</label>
                     <input type="file" name="image" class="form-control" id="image">

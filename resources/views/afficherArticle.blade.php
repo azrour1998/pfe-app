@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th scope="col">image</th>
+                        <th scope="col">categorie</th>
                         <th scope="col">Désigniation</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
@@ -31,6 +32,7 @@
                     <tr>
               
                         <td>  <img height="100px" src="{{'/storage/images/articles/'.$article['image']}}" /></td>
+                        <td class="text-light bg-dark">{{$article['category']}}</td>
                         <td>{{$article['designation']}}</td>
                         <td>{{$article['quantity']}}</td>
                         <td>{{$article['price']}}</td>
