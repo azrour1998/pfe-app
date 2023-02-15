@@ -11,6 +11,8 @@ class Fournisseur extends Model
         'name',
         'adresse',
         'telephone',
+        'city',
+        'pays',
         'added_by',
     ];
 

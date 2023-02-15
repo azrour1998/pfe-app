@@ -15,8 +15,12 @@ class AddArgumentToFournisseurTable extends Migration
     {
         Schema::table('fournisseurs', function (Blueprint $table) {
             //
-            $table->text('adresse');
+        
+            $table->text('name');
             $table->text('telephone');
+            $table->text('adresse');
+            $table->text('city');
+            $table->text('pays');
             $table->text('added_by');
             
         });

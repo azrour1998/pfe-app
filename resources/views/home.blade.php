@@ -44,11 +44,7 @@
                                         <div class="col-auto">
                                             <i class="fas fa-poll fa-2x text-gray-300"></i>
                                         </div>
-                                        <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                        
                                       
                                     </div>
                                 </div>
