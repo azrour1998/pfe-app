@@ -16,24 +16,28 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th scope="col">image</th>
+                        <th scope="col">categorie</th>
                         <th scope="col">Désigniation</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Fournisseur</th>
                         <th scope="col">Minimal quantity</th>
-                        <th scope="col">image</th>
+                        
                     </tr>
                 </thead>
                
                 <tbody>
                     @foreach($articles as $article)
                     <tr>
+              
+                        <td>  <img height="100px" src="{{'/storage/images/articles/'.$article['image']}}" /></td>
+                        <td class="text-light bg-dark">{{$article['category']}}</td>
                         <td>{{$article['designation']}}</td>
                         <td>{{$article['quantity']}}</td>
                         <td>{{$article['price']}}</td>
                         <td>{{$article['fournisseur_id']}}</td>
                         <td>{{$article['minimal_quantity']}}</td>
-                        <td>{{$article['image']}}</td>
                     </tr>
                     @endforeach
                     

@@ -20,8 +20,7 @@
                         <th scope="col">Nom</th>
                         <th scope="col">telephone</th>
                         <th scope="col">adresse</th>
-                        <th scope="col">ville</th>
-                        <th scope="col">pays</th>
+                      
               
                     </tr>
                 </thead>
@@ -32,9 +31,8 @@
                         <td>{{$fournisseur['name']}}</td>
                         <td>{{$fournisseur['telephone']}}</td>
                         <td>{{$fournisseur['adresse']}}</td>
-                        <td>{{$fournisseur['city']}}</td>
-                        <td>{{$fournisseur['pays']}}</td>
                      
+                    </tr>
               
                     @endforeach
                     

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Historique;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        return view('addArticle');
+
+        $categories = DB::select('select categorie from categories');
+        return view('addArticle',['categories'=>$categories]);
     }
  
 
@@ -20,7 +23,7 @@ class ArticleController extends Controller
 
         $article = new Article;
         $article->designation = $request->designation;
-       
+        $article->category = $request->categorie;
         $article->quantity = $request->quantity;
         $article->price = $request->price;
 
@@ -33,13 +36,21 @@ class ArticleController extends Controller
         $article->minimal_quantity = $request->minimal_quantity;
 
         //TODO: cas particulier à traiter
-        $article->image = 'path/to/image';
+
+             $destination_path = '/public/images/articles';
+             $image = $request->file('image');
+            
+             $image_name = $image->getClientOriginalName();
+             $path = $request->file('image')->storeAs($destination_path,$image_name);
+
+             $article->image = $image_name;
+      
         
 
         $article->save();
         $historique= new Historique;
-        $historique->title='article ajouté';
-        $historique->description='un article a été ajouté par :'.$article->added_by;
+        $historique->title='Un article a été ajouté';
+        $historique->description=$article->added_by.' viens d\'ajouter '.$article->quantity.' de  '.$article->designation.' au stock';
         $historique->seen=false;
         $historique->save();
         return redirect('addArticle')->with('status', ' l\'Article a été ajouté ');
