@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\HistoriqueController;
-
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -22,8 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('addArticle', [ArticleController::class, 'index'])->name('addArticle');
 
+Route::get('addArticle', [ArticleController::class, 'index'])->name('addArticle');
+Route::get('addUser', [UserController::class, 'index','store'])->name('addUser');
+
+Route::post('addUser', [UserController::class, 'addUser'])->name('addUser');
+Route::get('afficherUser', [UserController::class, 'afficherUser'])->name('afficherUser');
 
 
 Route::get('historique', [HistoriqueController::class, 'index']);
@@ -45,3 +49,6 @@ Route::get('afficherFournisseur', [FournisseurController::class, 'afficherFourni
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+

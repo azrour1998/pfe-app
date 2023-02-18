@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Historique;
+use App\Models\Fournisseur;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-
+        $historiques= Historique::all();
         $categories = DB::select('select categorie from categories');
-        return view('addArticle',['categories'=>$categories]);
+        return view('addArticle',['categories'=>$categories],['historiques'=>$historiques]);
     }
- 
+
+
 
     public function addArticle(Request $request)
     {
@@ -44,23 +47,31 @@ class ArticleController extends Controller
              $path = $request->file('image')->storeAs($destination_path,$image_name);
 
              $article->image = $image_name;
-      
+            
         
 
         $article->save();
-        $historique= new Historique;
-        $historique->title='Un article a été ajouté';
-        $historique->description=$article->added_by.' viens d\'ajouter '.$article->quantity.' de  '.$article->designation.' au stock';
-        $historique->seen=false;
-        $historique->save();
-        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ');
-    }
+        $historiques= new Historique;
+        $historiques->title='Un article a été ajouté';
+        $historiques->description=$article->added_by.' viens d\'ajouter '.$article->quantity.' de  '.$article->designation.' au stock';
+        $historiques->seen=false;
+        $article-> $historiques =  $historiques;
 
+        $historiques->save();
+        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ',['historiques'=>$historiques]);
+    }
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['unique:users'],
+           
+        ]);
+    }
     public function afficherArticle()
     {
         $articles= Article::all();
-        
-        return view('afficherArticle',['articles'=>$articles]);
+        $historiques= Historique::all();
+        return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques]);
        
     }
 }

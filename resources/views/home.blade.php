@@ -57,11 +57,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">En repture de stock
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Utilisateurs
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">5</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$countUsers}}</div>
                                                 </div>
                                                 <div class="col">
                                                 

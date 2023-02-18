@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fournisseur;
 use App\Models\Historique;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class HistoriqueController extends Controller
@@ -13,7 +13,10 @@ class HistoriqueController extends Controller
     public function index()
     {
       
-        return view('historique');
+        
+            $historiques= DB::table('historiques')->select('title','description')->get();
+            return view('historique',['historiques'=>$historiques]);
+        
            
     }
    
@@ -24,6 +27,7 @@ class HistoriqueController extends Controller
         return view('historique',['historiques'=>$historiques]);
        
     }
+  
 }
 
     
