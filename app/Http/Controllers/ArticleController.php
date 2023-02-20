@@ -21,42 +21,51 @@ class ArticleController extends Controller
         return view('addArticle',['categories'=>$categories,'fournisseurs'=>$fournisseurs,'historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
 
-
+    
 
     public function addArticle(Request $request)
     {
-    
-
-        $article = new Article;
-        $article->designation = $request->designation;
-        $article->category = $request->categorie;
-        $article->quantity = $request->quantity;
-        $article->price = $request->price;
-
-        //TODO: récuperer les fournisseur de la base de donnée
-        $article->fournisseur_id = $request->fournisseur;
-        $article->added_by=auth()->user()->email;
-        $article->last_arrival =now();
-        $article->minimal_quantity = $request->minimal_quantity;
-        $destination_path = '/public/images/articles';
-        $image = $request->file('image');
-            
-        $image_name = $image->getClientOriginalName();
-        $path = $request->file('image')->storeAs($destination_path,$image_name);
-        $article->image = $image_name;
-            
-        
-
-        $article->save();
-        $historiques= new Historique;
-        $historiques->title='Un article a été ajouté';
-        $historiques->description=$article->quantity.' '.$article->designation.'s ont été ajoutés au stock par '.$article->added_by;
-        $historiques->seen=false;
-        $article-> $historiques =  $historiques;
         $notSeen= Historique::where('seen','=','0')->select()->count();
-        $historiques->save();
-        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
-    }
+        $historiques=Historique::all();
+        $article = Article::where('designation', '=',$request->designation)->first();
+        if ($article === null) {
+
+                $article = new Article;
+                $article->designation = $request->designation;
+                $article->category = $request->categorie;
+                $article->quantity = $request->quantity;
+                $article->price = $request->price;
+
+                //TODO: récuperer les fournisseur de la base de donnée
+                $article->fournisseur_id = $request->fournisseur;
+                $article->added_by=auth()->user()->email;
+                $article->last_arrival =now();
+                $article->minimal_quantity = $request->minimal_quantity;
+                $destination_path = '/public/images/articles';
+                $image = $request->file('image');
+                    
+                $image_name = $image->getClientOriginalName();
+                $path = $request->file('image')->storeAs($destination_path,$image_name);
+                $article->image = $image_name;
+                    
+                
+
+                $article->save();
+                $historiques= new Historique;
+                $historiques->title='Un article a été ajouté';
+                $historiques->description=$article->quantity.' '.$article->designation.'s ont été ajoutés au stock par '.$article->added_by;
+                $historiques->seen=false;
+                $article-> $historiques =  $historiques;
+                $historiques->save();
+                return redirect('addArticle')->with('status', 200,['historiques'=>$historiques,'notSeen'=>$notSeen]);
+            }else{
+                return redirect('addArticle')->with('status', ' l\'Article exists déjà, modifier le directement dans la liste des articles ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
+            }
+        }
+       
+        
+       
+       
     protected function validator(array $data)
     {
         return Validator::make($data, [

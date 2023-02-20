@@ -22,7 +22,7 @@ class HistoriqueController extends Controller
    
     public function Historique()
     {
-        $historiques= Historique::orderBy('id', 'DESC')->get();
+        $historiques= Historique::orderBy('created_at', 'DESC')->get();
         $notSeen= Historique::where('seen','=','0')->select()->count();
         return view('historique',['historiques'=>$historiques,'notSeen'=>$notSeen]);
        

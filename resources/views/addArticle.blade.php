@@ -6,11 +6,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="container mt-4">
-  @if(session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-  @endif
+    @if(session('status') && session('status')===200)
+        <div class="alert alert-success">
+            l'article a été ajouter 
+        </div>
+    @elseif(session('status'))
+        <div class="alert alert-danger">
+            {{ session('status') }}
+        </div>
+    @endif
          <div class="card">
             <div class="card-header">{{ __('AddArticle') }}</div>
             <div class="card-body">
