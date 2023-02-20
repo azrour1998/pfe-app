@@ -119,8 +119,9 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vous voulez :</h6>
-                        <a class="collapse-item" href="login.html">liste des utilisateurs</a>
-                        <a class="collapse-item" href="register.html">Nouveau utilisateur</a>
+                        <a class="collapse-item" href="{{ route('afficherUser') }}">liste des utilisateurs</a>
+                        <a class="collapse-item" href="{{ route('addUser') }}">Nouveau utilisateur</a>
+                      
                     </div>
                 </div>
             </li>
@@ -216,43 +217,33 @@
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
+                                
+                           
+                                <table>
+                              
+                        @foreach($historiques as $historique)
+                        
+                                         <tr>
+                                        
+                                         
+                                                <a class="dropdown-item" href="http://127.0.0.1:8000/historique" style="font-weight: bold;">
+                                              
+                                      <i class='fa fa-bell' style='color: blue'></i>  {{$historique['description']}}</a>
+                                   
+                                        </tr>
+                     
+                                      @endforeach
+                                    
 
+               </table>  
+               if (isset($_GET{{$historique['description']}}))
+{
+    <style>
+        tr > a{
+            font-weight: normal;
+        }
+    </style>
+}endif                  
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -422,4 +413,6 @@
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="js/demo/datatables-demo.js"></script>
+  
+
 </body>
