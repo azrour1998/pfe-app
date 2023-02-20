@@ -33,6 +33,8 @@ Route::get('afficherUser', [UserController::class, 'afficherUser'])->name('affic
 Route::get('historique', [HistoriqueController::class, 'index'])->name('historique');
 Route::get('historique', [HistoriqueController::class, 'Historique'])->name('historique');
 
+Route::get('/historique/{id}/markAsSeen', [HistoriqueController::class, 'mark_as_seen'])->name('markAsSeen');
+Route::get('/historique/{id}/deleteItem', [HistoriqueController::class, 'delete_item'])->name('deleteItem');
 
 
 Route::post('addArticle', [ArticleController::class, 'addArticle'])->name('addArticle');
