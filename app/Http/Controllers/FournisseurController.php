@@ -12,7 +12,8 @@ class FournisseurController extends Controller
     public function index()
     {
         $historiques= Historique::all();
-        return view('addFournisseur',['historiques'=>$historiques]);
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return view('addFournisseur',['historiques'=>$historiques,'notSeen'=>$notSeen]);
            
     }
 
@@ -34,17 +35,17 @@ class FournisseurController extends Controller
         $historiques->description='un fournisseur a été ajouté par :'.$fournisseur->added_by;
         $historiques->seen=false;
         $historiques->save();
-       
+        $notSeen= Historique::where('seen','=','0')->select()->count();
  
-        return redirect('addFournisseur')->with('status', ' le fournisseur a été ajouté ',['historiques'=>$historiques]);
+        return redirect('addFournisseur')->with('status', ' le fournisseur a été ajouté ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
     public function afficherFournisseur()
     {
         $fournisseurs= Fournisseur::all();
         
         $historiques= Historique::all();
-        
-        return view('afficherFournisseur',['fournisseurs'=>$fournisseurs],['historiques'=>$historiques]);
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return view('afficherFournisseur',['fournisseurs'=>$fournisseurs],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
 }

@@ -14,9 +14,11 @@ class ArticleController extends Controller
     public function index()
     {
         $historiques= Historique::all();
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+      
         $categories = DB::select('select categorie from categories');
         $fournisseurs=fournisseur::all();
-        return view('addArticle',['categories'=>$categories,'fournisseurs'=>$fournisseurs,'historiques'=>$historiques]);
+        return view('addArticle',['categories'=>$categories,'fournisseurs'=>$fournisseurs,'historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
 
 
@@ -51,9 +53,9 @@ class ArticleController extends Controller
         $historiques->description=$article->quantity.' '.$article->designation.'s ont été ajoutés au stock par '.$article->added_by;
         $historiques->seen=false;
         $article-> $historiques =  $historiques;
-
+        $notSeen= Historique::where('seen','=','0')->select()->count();
         $historiques->save();
-        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ',['historiques'=>$historiques]);
+        return redirect('addArticle')->with('status', ' l\'Article a été ajouté ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
     protected function validator(array $data)
     {
@@ -65,9 +67,10 @@ class ArticleController extends Controller
     public function afficherArticle()
     {
         $articles= DB::table('articles')->join('fournisseurs','articles.fournisseur_id','=','fournisseurs.id') ->select('articles.*', 'fournisseurs.name as fournisseurName')->get();
-       
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        
         $historiques= Historique::all();
-        return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques]);
+        return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
 }
