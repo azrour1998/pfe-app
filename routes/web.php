@@ -30,8 +30,8 @@ Route::post('addUser', [UserController::class, 'addUser'])->name('addUser');
 Route::get('afficherUser', [UserController::class, 'afficherUser'])->name('afficherUser');
 
 
-Route::get('historique', [HistoriqueController::class, 'index']);
-Route::get('historique', [HistoriqueController::class, 'Historique']);
+Route::get('historique', [HistoriqueController::class, 'index'])->name('historique');
+Route::get('historique', [HistoriqueController::class, 'Historique'])->name('historique');
 
 
 

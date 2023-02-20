@@ -15,7 +15,8 @@ class ArticleController extends Controller
     {
         $historiques= Historique::all();
         $categories = DB::select('select categorie from categories');
-        return view('addArticle',['categories'=>$categories],['historiques'=>$historiques]);
+        $fournisseurs=fournisseur::all();
+        return view('addArticle',['categories'=>$categories,'fournisseurs'=>$fournisseurs,'historiques'=>$historiques]);
     }
 
 
@@ -31,29 +32,23 @@ class ArticleController extends Controller
         $article->price = $request->price;
 
         //TODO: récuperer les fournisseur de la base de donnée
-        $article->fournisseur_id = 1;
-
-        //TODO : show the team the way to get user auth ;) 
+        $article->fournisseur_id = $request->fournisseur;
         $article->added_by=auth()->user()->email;
         $article->last_arrival =now();
         $article->minimal_quantity = $request->minimal_quantity;
-
-        //TODO: cas particulier à traiter
-
-             $destination_path = '/public/images/articles';
-             $image = $request->file('image');
+        $destination_path = '/public/images/articles';
+        $image = $request->file('image');
             
-             $image_name = $image->getClientOriginalName();
-             $path = $request->file('image')->storeAs($destination_path,$image_name);
-
-             $article->image = $image_name;
+        $image_name = $image->getClientOriginalName();
+        $path = $request->file('image')->storeAs($destination_path,$image_name);
+        $article->image = $image_name;
             
         
 
         $article->save();
         $historiques= new Historique;
         $historiques->title='Un article a été ajouté';
-        $historiques->description=$article->added_by.' viens d\'ajouter '.$article->quantity.' de  '.$article->designation.' au stock';
+        $historiques->description=$article->quantity.' '.$article->designation.'s ont été ajoutés au stock par '.$article->added_by;
         $historiques->seen=false;
         $article-> $historiques =  $historiques;
 
@@ -69,7 +64,8 @@ class ArticleController extends Controller
     }
     public function afficherArticle()
     {
-        $articles= Article::all();
+        $articles= DB::table('articles')->join('fournisseurs','articles.fournisseur_id','=','fournisseurs.id') ->select('articles.*', 'fournisseurs.name as fournisseurName')->get();
+       
         $historiques= Historique::all();
         return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques]);
        

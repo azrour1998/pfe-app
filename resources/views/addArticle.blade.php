@@ -37,12 +37,13 @@
                 <div class="row mb-3">
                     <label for="exampleFormControlInput1" class="col-md-2 col-form-label text-start">fournisseur</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="exampleFormControlSelect1" >
+                        <select class="form-control" id="exampleFormControlSelect1" id="fournisseur" name="fournisseur" required >
                             
                                 <option>Select</option>
-                                <option>hp</option>
-                                <option>mac</option>
-                                <option>del</option>   
+                                @foreach($fournisseurs as $fournisseur)
+                                <option value="{{$fournisseur->id}}" >{{$fournisseur->name}}</option>
+                                @endforeach
+
                         </select>
                
                     </div>
