@@ -91,6 +91,16 @@ class UserController extends Controller
        
     }
 
+    public function userInfo($id){
+        $user= User::where('id','=',$id)->first();
+        $addedArticles=Historique::where('title','=','Un article a été ajouté')->count();
+        $articleAddedByUser=Historique::where('title','=','Un article a été ajouté')->where('description','LIKE','%'.$user->email)->count();
+        $contribution=$articleAddedByUser/$addedArticles*100;
+        $historiques= Historique::all();
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return view('userInfo',['user'=>$user],['historiques'=>$historiques,'notSeen'=>$notSeen,'contribution'=>$contribution]);
+    }
+
    
 
     
