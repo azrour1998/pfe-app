@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Historique;
 
 class Fournisseur extends Model
 {
@@ -11,6 +12,8 @@ class Fournisseur extends Model
         'name',
         'adresse',
         'telephone',
+        'city',
+        'pays',
         'added_by',
     ];
 

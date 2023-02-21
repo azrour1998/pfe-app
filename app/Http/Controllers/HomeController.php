@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Historiques;
+use App\Models\Historique;
 use App\Models\Article;
+use App\Models\User;
+
+use App\Models\Fournisseur;
+use App\Http\Controllers\stdClass;
+
 class HomeController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
+ {
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,11 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data= Historiques::all();
-        
+        $data= Historique::orderBy('id', 'DESC')->get();
+      
+        $notSeen= Historique::where('seen','=','0')->select()->count();
         $countHistoric=$data->count();
         $countArticles=count(Article::all());
-    
-        return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles]);
+        $countFournisseurs=count(Fournisseur::all());
+        $countUsers=count(User::all());
+        $date= date('Y-m-d H:i:s');
+
+      
+        return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen]);
     }
-}
+ }
