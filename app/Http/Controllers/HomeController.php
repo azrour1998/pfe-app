@@ -25,13 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data= Historique::all();
+        $data= Historique::orderBy('id', 'DESC')->get();
       
-      
+        $notSeen= Historique::where('seen','=','0')->select()->count();
         $countHistoric=$data->count();
         $countArticles=count(Article::all());
         $countFournisseurs=count(Fournisseur::all());
         $countUsers=count(User::all());
-        return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data]);
+        $date= date('Y-m-d H:i:s');
+
+      
+        return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen]);
     }
  }

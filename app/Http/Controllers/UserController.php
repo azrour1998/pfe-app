@@ -35,7 +35,8 @@ class UserController extends Controller
     public function index()
     {     $users= User::all();
         $historiques= Historique::all();
-        return view('addUser',['historiques'=>$historiques],['users'=>$users]);
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return view('addUser',['historiques'=>$historiques,'notSeen'=>$notSeen],['users'=>$users]);
           
     
     }
@@ -75,14 +76,18 @@ class UserController extends Controller
         $historiques->save();
         $this->middleware('guest');
         $historiques= Historique::all();
-        return redirect('addUser')->with('status', ' le user a été ajouté ',['historiques'=>$historiques]);
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return redirect('addUser')->with('status', ' le user a été ajouté ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
    
     public function afficherUser()
     {
         $users= User::all();
         $historiques= Historique::all();
-        return view('afficherUser',['users'=>$users],['historiques'=>$historiques]);
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+        return view('afficherUser',['users'=>$users],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
 

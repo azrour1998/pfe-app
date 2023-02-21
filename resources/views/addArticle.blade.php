@@ -6,11 +6,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="container mt-4">
-  @if(session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-  @endif
+    @if(session('status') && session('status')===200)
+        <div class="alert alert-success">
+            l'article a été ajouter 
+        </div>
+    @elseif(session('status'))
+        <div class="alert alert-danger">
+            {{ session('status') }}
+        </div>
+    @endif
          <div class="card">
             <div class="card-header">{{ __('AddArticle') }}</div>
             <div class="card-body">
@@ -37,12 +41,13 @@
                 <div class="row mb-3">
                     <label for="exampleFormControlInput1" class="col-md-2 col-form-label text-start">fournisseur</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="exampleFormControlSelect1" >
+                        <select class="form-control" id="exampleFormControlSelect1" id="fournisseur" name="fournisseur" required >
                             
                                 <option>Select</option>
-                                <option>hp</option>
-                                <option>mac</option>
-                                <option>del</option>   
+                                @foreach($fournisseurs as $fournisseur)
+                                <option value="{{$fournisseur->id}}" >{{$fournisseur->name}}</option>
+                                @endforeach
+
                         </select>
                
                     </div>
