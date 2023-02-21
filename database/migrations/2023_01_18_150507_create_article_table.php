@@ -15,7 +15,7 @@ class CreateArticleTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->text('designation');
+            $table->text('designation')->unique();
             $table->integer('quantity');
             $table->double('price');
             $table->integer('fournisseur_id');

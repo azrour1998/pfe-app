@@ -22,17 +22,10 @@ class CreateUserTable extends Migration
             $table->text('role');
             $table->text('company');
             $table->string('password');
+            $table->text('added_by');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('_user');
-    }
+   
 }

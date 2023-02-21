@@ -31,13 +31,13 @@
                     @foreach($articles as $article)
                     <tr>
               
-                        <td>  <img height="100px" src="{{'/storage/images/articles/'.$article['image']}}" /></td>
-                        <td class="text-light bg-dark">{{$article['category']}}</td>
-                        <td>{{$article['designation']}}</td>
-                        <td>{{$article['quantity']}}</td>
-                        <td>{{$article['price']}}</td>
-                        <td>{{$article['fournisseur_id']}}</td>
-                        <td>{{$article['minimal_quantity']}}</td>
+                        <td>  <img height="100px" src="{{'/storage/images/articles/'.$article->image}}" /></td>
+                        <td class="text-light bg-dark">{{$article->category}}</td>
+                        <td>{{$article->designation}}</td>
+                        <td>{{$article->quantity}}</td>
+                        <td>{{$article->price}}</td>
+                        <td>{{$article->fournisseurName}}</td>
+                        <td>{{$article->minimal_quantity}}</td>
                     </tr>
                     @endforeach
                     
