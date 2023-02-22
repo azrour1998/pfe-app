@@ -33,6 +33,7 @@ class HomeController extends Controller
         $countFournisseurs=count(Fournisseur::all());
         $countUsers=count(User::all());
         $date= date('Y-m-d H:i:s');
+        
 
       
         return view("home",['countHistoric'=>$countHistoric,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen]);
