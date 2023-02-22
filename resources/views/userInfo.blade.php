@@ -71,7 +71,7 @@
 									<h5 class="d-flex align-items-center mb-3">Project Status</h5>
 									<p>Contribution à l'alimentation du stock :  {{$contribution}}%</p>
 									<div class="progress mb-3" style="height: 15px">
-										<div class="progress-bar bg-primary" role="progressbar" style="width: {{$contribution}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-primary" role="progressbar" style="width:{{$contribution}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                        
 									</div>
                                    

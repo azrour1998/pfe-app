@@ -31,6 +31,7 @@ Route::get('afficherUser', [UserController::class, 'afficherUser'])->name('affic
 
 
 Route::get('historique', [HistoriqueController::class, 'index'])->name('historique');
+Route::get('categorie', [CategorieController::class, 'index'])->name('categorie');
 Route::get('historique', [HistoriqueController::class, 'Historique'])->name('historique');
 
 Route::get('userInfo/{id}/show', [UserController::class, 'userInfo'])->name('userInfo');

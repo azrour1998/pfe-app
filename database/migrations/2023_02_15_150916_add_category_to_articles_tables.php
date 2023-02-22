@@ -15,7 +15,7 @@ class AddCategoryToArticlesTables extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             //
-            $table->text('category');
+            $table->text('categorie');
         });
     }
 

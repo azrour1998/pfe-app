@@ -55,11 +55,47 @@
             </table>
         </div>
     </div>
-</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        
+                        <th scope="col">title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Actions</th>
+                            
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    @foreach($historiqueuser as $historiqueu)
+                  
+                    @if($historiqueu['seen'])
+                    <tr style="background-color:#D1D8DF">
+                    @else
+                    <tr >
+                    @endif
+                   
+                  
+                        <td style="text-align: center; vertical-align: middle;">{{$historiqueu['title']}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{$historiqueu['description']}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{$historiqueu['created_at']}}</td>
+                        <td style="padding: 15px;">
+                            <a type="button"  href="{{ url('/historique/' . $historique->id . '/markAsSeen') }}" class="btn btn-outline-success px-3" data-toggle="tooltip" data-placement="top" title="Marquer comme lu"><i class=" fa-solid fa-eye" aria-hidden="true"></i></a>
+                            <a type="button" class="btn btn-outline-info px-3" data-toggle="tooltip" data-placement="top" title="Afficher l'article"><i class=" fa-solid fa-box" aria-hidden="true"></i></a>
+                            <a type="button" class="btn btn-outline-dark px-3" data-toggle="tooltip" data-placement="top" title="Afficher l'utilisateur"><i class=" fa-solid fa-user" aria-hidden="true"></i></a>
+                            <a type="button"  href="{{ url('/historique/' . $historique->id . '/deleteItem') }}"  class="btn btn-outline-danger px-3" data-toggle="tooltip" data-placement="top" title="Supprimer cette alert"><i class=" fa-solid fa-trash" aria-hidden="true"></i></a>
 
-</div>
-
-
+                        </td>
+                    </tr>
+                    @endforeach
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 

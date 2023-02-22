@@ -113,40 +113,68 @@
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Catégories</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
+                                    <h4 class="small font-weight-bold">catégorie beauté <span
+                                            class="float-right">{{$pourcentageA}}%  </span></h4>
+                                         
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageA}}%"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">Article de sport <span
+                                            class="float-right"> {{$pourcentageB}}%</span></h4>
+                                          
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageB}}%"
+                                          aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
+                                    <h4 class="small font-weight-bold">Article pour bébés et enfants <span
+                                            class="float-right">{{$pourcentageC}}%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageC}}%"
+                                           aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">Produit artisanaux <span
+                                            class="float-right">{{$pourcentageD}}%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageD}}%"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    
+                                    <h4 class="small font-weight-bold">Cuisine et maison <span
+                                            class="float-right">{{$pourcentageG}}%  </span></h4>
+                                         
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageG}}%"
+                                           aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                </div>
+                                  
+                                    <h4 class="small font-weight-bold"> Bricolage, Jardin & animalerie <span
+                                            class="float-right">{{$pourcentageH}}%  </span></h4>
+                                         
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageH}}%"
+                                           aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold"> Alimentation et boissons <span
+                                            class="float-right">{{$pourcentageE}}%  </span></h4>
+                                         
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageE}}%"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold"> informatique et bureau <span
+                                            class="float-right">{{$pourcentageF}}%  </span></h4>
+                                         
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageF}}%"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
                             </div>
 
                             <!-- Color System -->

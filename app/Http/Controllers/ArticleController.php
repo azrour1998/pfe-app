@@ -8,7 +8,7 @@ use App\Models\Historique;
 use App\Models\Fournisseur;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Categorie;
 class ArticleController extends Controller
 {
     public function index()
@@ -18,6 +18,8 @@ class ArticleController extends Controller
       
         $categories = DB::select('select categorie from categories');
         $fournisseurs=fournisseur::all();
+        $countArticles=count(Article::all());
+       
         return view('addArticle',['categories'=>$categories,'fournisseurs'=>$fournisseurs,'historiques'=>$historiques,'notSeen'=>$notSeen]);
     }
 
@@ -35,7 +37,6 @@ class ArticleController extends Controller
                 $article->category = $request->categorie;
                 $article->quantity = $request->quantity;
                 $article->price = $request->price;
-
                 //TODO: récuperer les fournisseur de la base de donnée
                 $article->fournisseur_id = $request->fournisseur;
                 $article->added_by=auth()->user()->email;
@@ -43,11 +44,9 @@ class ArticleController extends Controller
                 $article->minimal_quantity = $request->minimal_quantity;
                 $destination_path = '/public/images/articles';
                 $image = $request->file('image');
-                    
                 $image_name = $image->getClientOriginalName();
                 $path = $request->file('image')->storeAs($destination_path,$image_name);
                 $article->image = $image_name;
-                    
                 
 
                 $article->save();
@@ -57,7 +56,8 @@ class ArticleController extends Controller
                 $historiques->seen=false;
                 $article-> $historiques =  $historiques;
                 $historiques->save();
-                return redirect('addArticle')->with('status', 200,['historiques'=>$historiques,'notSeen'=>$notSeen]);
+              
+                return redirect('addArticle')->with('status', 200,['historiques'=>$historiques,'notSeen'=>$notSeen,]);
             }else{
                 return redirect('addArticle')->with('status', ' l\'Article exists déjà, modifier le directement dans la liste des articles ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
             }
@@ -77,9 +77,11 @@ class ArticleController extends Controller
     {
         $articles= DB::table('articles')->join('fournisseurs','articles.fournisseur_id','=','fournisseurs.id') ->select('articles.*', 'fournisseurs.name as fournisseurName')->get();
         $notSeen= Historique::where('seen','=','0')->select()->count();
-        
+        $countArticles=count(Article::all());
+     
         $historiques= Historique::all();
         return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
+   
 }
