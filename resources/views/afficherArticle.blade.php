@@ -38,6 +38,11 @@
                         <td>{{$article->price}}</td>
                         <td>{{$article->fournisseurName}}</td>
                         <td>{{$article->minimal_quantity}}</td>
+                      <td>  <form action="{{ url('afficherArticle/'. $article->id) }}" method="post"style="display: inline">
+                    {{ method_field('DELETE')}}
+                   {{csrf_field()}}
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form></td>
                     </tr>
                     @endforeach
                     

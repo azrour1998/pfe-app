@@ -47,7 +47,6 @@ class ArticleController extends Controller
                 $image_name = $image->getClientOriginalName();
                 $path = $request->file('image')->storeAs($destination_path,$image_name);
                 $article->image = $image_name;
-                
 
                 $article->save();
                 $historiques= new Historique;
@@ -57,7 +56,7 @@ class ArticleController extends Controller
                 $article-> $historiques =  $historiques;
                 $historiques->save();
               
-                return redirect('addArticle')->with('status', 200,['historiques'=>$historiques,'notSeen'=>$notSeen,]);
+                return redirect('addArticle')->with('status', 200,['historiques'=>$historiques,'notSeen'=>$notSeen]);
             }else{
                 return redirect('addArticle')->with('status', ' l\'Article exists déjà, modifier le directement dans la liste des articles ',['historiques'=>$historiques,'notSeen'=>$notSeen]);
             }
@@ -83,5 +82,13 @@ class ArticleController extends Controller
         return view('afficherArticle',['articles'=>$articles],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
-   
+    public function destroy($id)
+    {
+
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return redirect()->route('afficherArticle')->with('success', 'article Supprimé avec succès');
+
+    }
 }

@@ -23,14 +23,15 @@ class HistoriqueController extends Controller
    
     public function Historique()
     { 
-        $user=auth()->user();
+       
         $historiques= Historique::orderBy('created_at', 'DESC')->get();
         $notSeen= Historique::where('seen','=','0')->select()->count();
-        $historiqueuser=Historique::where('description','LIKE','%'.$user->email)->get();
-
-        return view('historique',['historiques'=>$historiques,'notSeen'=>$notSeen,'historiqueuser'=>$historiqueuser]);
+     
+       
+        return view('historique',['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
+  
 
     public function mark_as_seen($id){
         $historiques= Historique::where('id', $id)

@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Fournisseur;
 use App\Http\Controllers\stdClass;
 
-class HomeController extends Controller
+class documentationController extends Controller
 
  {
     public function __construct()
@@ -52,7 +52,7 @@ class HomeController extends Controller
          $quantityArticleCategorieH= Article::where('category','=','Bricolage, Jardin & animalerie')->count();
         $pourcentageH=($quantityArticleCategorieH/$quantiteArticleStock) *100;
        
-        return view("home",['countHistoric'=>$countHistoric,'alert'=>$alert,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen,'pourcentageA'=> $pourcentageA,'pourcentageB'=> $pourcentageB,'pourcentageC'=> $pourcentageC,'pourcentageD'=> $pourcentageD,'pourcentageE'=> $pourcentageE,'pourcentageG'=> $pourcentageG,'pourcentageH'=> $pourcentageH,'pourcentageF'=> $pourcentageF]);
+        return view("documentation",['countHistoric'=>$countHistoric,'alert'=>$alert,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen,'pourcentageA'=> $pourcentageA,'pourcentageB'=> $pourcentageB,'pourcentageC'=> $pourcentageC,'pourcentageD'=> $pourcentageD,'pourcentageE'=> $pourcentageE,'pourcentageG'=> $pourcentageG,'pourcentageH'=> $pourcentageH,'pourcentageF'=> $pourcentageF]);
     }
  
   

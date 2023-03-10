@@ -57,6 +57,15 @@
                     <span>Dashboard</span></a>
             </li>
 
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('documentation') }}">
+                <i class="fa fa-info" aria-hidden="true"></i>
+
+                    <span>Documentation</span></a>
+            </li>
+
+          
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -128,7 +137,9 @@
 
             <!-- Nav Item - Charts -->
            
-
+            
+              
+          
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -269,7 +280,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item" href="{{ route('historique') }}">
+                                <a class="dropdown-item" href="{{ route('historiqueUser') }}">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>

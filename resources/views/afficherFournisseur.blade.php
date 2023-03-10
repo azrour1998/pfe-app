@@ -31,7 +31,11 @@
                         <td>{{$fournisseur['name']}}</td>
                         <td>{{$fournisseur['telephone']}}</td>
                         <td>{{$fournisseur['adresse']}}</td>
-                     
+                        <td>  <form action="{{ url('afficherFournisseur/'. $fournisseur->id) }}" method="post"style="display: inline">
+                    {{ method_field('DELETE')}}
+                   {{csrf_field()}}
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form></td>
                     </tr>
               
                     @endforeach

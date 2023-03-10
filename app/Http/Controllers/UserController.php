@@ -41,12 +41,12 @@ class UserController extends Controller
     
     }
     use AuthenticatesUsers;
-    public function store()
+    public function store(array $data)
     { $users= User::all();
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',   
+            'password' => Hash::make($data['password']), 
         ]);
        }
 
@@ -103,7 +103,15 @@ class UserController extends Controller
 
    
 
-    
+    public function destroy($id)
+    {
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('afficherUser')->with('success', 'lutilisateur Supprimé avec succès');
+
+    }
     
         
     

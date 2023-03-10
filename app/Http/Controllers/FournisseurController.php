@@ -48,4 +48,13 @@ class FournisseurController extends Controller
         return view('afficherFournisseur',['fournisseurs'=>$fournisseurs],['historiques'=>$historiques,'notSeen'=>$notSeen]);
        
     }
+    public function destroy($id)
+    {
+
+        $user = Fournisseur::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('afficherFournisseur')->with('success', 'Fournisseur Supprimé avec succès');
+
+    }
 }

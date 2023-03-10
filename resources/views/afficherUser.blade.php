@@ -39,7 +39,11 @@
                         <td>{{$user['role']}}</td>
                         <td>{{$user['company']}}</td>
 
-
+                        <td>   <form action="{{ url('afficherUser/'. $user->id) }}" method="post"style="display: inline">
+                    {{ method_field('DELETE')}}
+                   {{csrf_field()}}
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form></td>
 
                      
                     </tr>
