@@ -7,10 +7,13 @@ use App\Models\Historique;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Article;
+
+use App\Models\Fournisseur;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -112,8 +115,86 @@ class UserController extends Controller
         return redirect()->route('afficherUser')->with('success', 'lutilisateur Supprimé avec succès');
 
     }
-    
+    public function edit(){
+        return view('userInfo');
+
+    }
+
+    public function update(Request $request){
+       
+        $users =Auth::user();
+        $users->name = $request['name'];
+        $users->email = $request['email'];
+        $users->telephone = $request['telephone'];
+        $users->company = $request['company'];
+       
+
+
+
+        $users->save();
+
+        return back()->with('status','Profile Updated');
         
-    
+    }
+        
+    public function changePassword()
+
+{   $user=Auth::user() ;
+    $addedArticles=Historique::where('title','=','Un article a été ajouté')->count();
+    $articleAddedByUser=Historique::where('title','=','Un article a été ajouté')->where('description','LIKE','%'.$user->email)->count();
+
+    $contribution=$articleAddedByUser/$addedArticles*100;
+   
+    $data= Historique::orderBy('id', 'DESC')->get();
+    $alert=  Article::where('quantity','==','minimal_quantity')->count();
+      $notSeen= Historique::where('seen','=','0')->select()->count();
+      $countHistoric=$data->count();
+      $countArticles=count(Article::all());
+      $countFournisseurs=count(Fournisseur::all());
+      $countUsers=count(User::all());
+    $historiques= Historique::all();
+    $notSeen= Historique::where('seen','=','0')->select()->count();
+   
+       $date= date('Y-m-d H:i:s');
+   return view('change-password',['user'=>$user,'countHistoric'=>$countHistoric,'alert'=>$alert,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen]);
+}
+
+public function updatePassword(Request $request)
+{
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+
+        #Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+        $user=Auth::user() ;
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        $addedArticles=Historique::where('title','=','Un article a été ajouté')->count();
+        $articleAddedByUser=Historique::where('title','=','Un article a été ajouté')->where('description','LIKE','%'.$user->email)->count();
+
+        $contribution=$articleAddedByUser/$addedArticles*100;
+       
+        $data= Historique::orderBy('id', 'DESC')->get();
+        $alert=  Article::where('quantity','==','minimal_quantity')->count();
+          $notSeen= Historique::where('seen','=','0')->select()->count();
+          $countHistoric=$data->count();
+          $countArticles=count(Article::all());
+          $countFournisseurs=count(Fournisseur::all());
+          $countUsers=count(User::all());
+        $historiques= Historique::all();
+        $notSeen= Historique::where('seen','=','0')->select()->count();
+
+           $date= date('Y-m-d H:i:s');
+        return back()->with("status", "Password changed successfully!",['countHistoric'=>$countHistoric,'alert'=>$alert,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen,'user'=>$user]);
+}
 }
 

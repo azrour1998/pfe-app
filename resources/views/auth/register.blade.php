@@ -81,7 +81,29 @@
                             </div>
                         </div>
 
-                        
+                        <div class="row mb-3">
+                            <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('role') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="dob"  class="form-control @error('dob') is-invalid @enderror" name="role"  required autocomplete="role" >
+
+                                <option>administrateur</option>
+                                <option>utilisateur</option>   
+                        </select>
+                            </div>
+                        </div>
+
+                       
+
+                        <div class="row mb-3">
+                            <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('company') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="company" type="company" class="form-control @error('dob') is-invalid @enderror" name="company"  required autocomplete="company" placeholder="company">
+
+                           
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

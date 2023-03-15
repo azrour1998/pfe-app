@@ -5,8 +5,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        
                     </div>
 
                     <!-- Content Row -->
@@ -116,34 +115,34 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Catégories</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">catégorie beauté <span
+                                    <h4 class="small font-weight-bold">Carte mère <span
                                             class="float-right">{{$pourcentageA}}%  </span></h4>
                                          
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageA}}%"
                                              aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Article de sport <span
+                                    <h4 class="small font-weight-bold">Imprimante <span
                                             class="float-right"> {{$pourcentageB}}%</span></h4>
                                           
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageB}}%"
                                           aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Article pour bébés et enfants <span
+                                    <h4 class="small font-weight-bold">Disque dur<span
                                             class="float-right">{{$pourcentageC}}%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageC}}%"
                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Produit artisanaux <span
+                                    <h4 class="small font-weight-bold">Unité centrale <span
                                             class="float-right">{{$pourcentageD}}%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width:{{$pourcentageD}}%"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     
-                                    <h4 class="small font-weight-bold">Cuisine et maison <span
+                                    <h4 class="small font-weight-bold">Écran d'ordinateur <span
                                             class="float-right">{{$pourcentageG}}%  </span></h4>
                                          
                                     <div class="progress mb-4">
@@ -151,7 +150,7 @@
                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                   
-                                    <h4 class="small font-weight-bold"> Bricolage, Jardin & animalerie <span
+                                    <h4 class="small font-weight-bold"> Souris (informatique) <span
                                             class="float-right">{{$pourcentageH}}%  </span></h4>
                                          
                                     <div class="progress mb-4">
@@ -159,7 +158,7 @@
                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <h4 class="small font-weight-bold"> Alimentation et boissons <span
+                                    <h4 class="small font-weight-bold"> Vidéoprojecteur<span
                                             class="float-right">{{$pourcentageE}}%  </span></h4>
                                          
                                     <div class="progress mb-4">
@@ -167,7 +166,7 @@
                                              aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <h4 class="small font-weight-bold"> informatique et bureau <span
+                                    <h4 class="small font-weight-bold"> Ordinateurs portables<span
                                             class="float-right">{{$pourcentageF}}%  </span></h4>
                                          
                                     <div class="progress mb-4">
@@ -182,10 +181,10 @@
 
                         </div>
 
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-12 mb-4 container">
 
                             <!-- Illustrations -->
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" style="background-position: center;">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Informations</h6>
                                 </div>

@@ -91,4 +91,6 @@ class ArticleController extends Controller
         return redirect()->route('afficherArticle')->with('success', 'article Supprimé avec succès');
 
     }
+  
+
 }

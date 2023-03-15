@@ -20,14 +20,14 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
         DB::table('categories')->insert([
-            ['categorie' => 'Santé et beauté'],
-            ['categorie' => 'Article de sport'],
-            ['categorie' => 'Article pour bébés et enfants'],
-            ['categorie' => 'Produit artisanaux'],
-            ['categorie' => 'Alimentation et boissons'],
-            ['categorie' => 'informatique et bureau'],
-            ['categorie' => 'Cuisine et maison'],
-            ['categorie' => 'Bricolage, Jardin & animalerie'], 
+            ['categorie' => 'Carte mère'],
+            ['categorie' => 'Imprimante'],
+            ['categorie' => 'Disque dur'],
+            ['categorie' => 'Unité centrale'],
+            ['categorie' => 'Écran dordinateur'],
+            ['categorie' => 'Souris (informatique)'],
+            ['categorie' => 'Ordinateurs portables'],
+            ['categorie' => 'Vidéoprojecteur'], 
         ]);
     }
 

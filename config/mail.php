@@ -36,15 +36,22 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' => env('MAIL_HOST'),
+            'port' => env('MAIL_PORT'),
+            'encryption' => env('salmateache0@gmail.com', 'tls'),
+            'username' => env('SALMA TEACHE'),
+            'password' => env('salmaljamila2003'),
             'timeout' => null,
             'auth_mode' => null,
-        ],
-
+        
+        'driver' => env('smtp'),
+        'host' => env('smtp.gmail.com'),
+        'port' => env( 25),
+       
+        'from' => array('address' => 'salmateache0@gmail.com', 'Salma Teache' => 'hawle'),
+       
+   
+        'pretend' => false,],
         'ses' => [
             'transport' => 'ses',
         ],
@@ -59,7 +66,7 @@ return [
 
         'sendmail' => [
             'transport' => 'sendmail',
-            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -t -i'),
+            'path' => env('/user/sbin/sendmail -bs'),
         ],
 
         'log' => [
@@ -71,13 +78,7 @@ return [
             'transport' => 'array',
         ],
 
-        'failover' => [
-            'transport' => 'failover',
-            'mailers' => [
-                'smtp',
-                'log',
-            ],
-        ],
+        
     ],
 
     /*
@@ -90,10 +91,16 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name' => env('MAIL_FROM_NAME'),
     ],
 
     /*

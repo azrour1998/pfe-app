@@ -50,8 +50,70 @@ Route::post('addFournisseur', [FournisseurController::class, 'addFournisseur'])-
 
 Route::get('afficherArticle', [ArticleController::class, 'afficherArticle'])->name('afficherArticle');
 Route::delete('afficherArticle/{id}', [ArticleController::class, 'destroy'])->name('destroy');
+Route::patch('afficherArticle/{id}', [ArticleController::class, 'update'])->name('update');
 Route::delete('afficherFournisseur/{id}', [FournisseurController::class, 'destroy'])->name('destroy');
 Route::delete('afficherUser/{id}', [UserController::class, 'destroy'])->name('destroy');
+Route::get('reset', [ResetPasswordController::class, 'validatePasswordRequest'])->name('validatePasswordRequest');
+
+Route::post('reset', [ResetPasswordController::class, 'validatePasswordRequest'])->name('validatePasswordRequest');
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+ 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Str;
+ 
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+            $user->save();
+ 
+            event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
+
+Route::get('email', [ResetPasswordController::class, 'validatePasswordRequest'])->name('validatePasswordRequest');
+
+Route::post('email', [ResetPasswordController::class, 'validatePasswordRequest'])->name('validatePasswordRequest');
 
 Route::get('afficherFournisseur', [FournisseurController::class, 'afficherFournisseur'])->name('afficherFournisseur');
 Route::middleware(['auth','role:administrateur'])->group(function(){
@@ -67,9 +129,11 @@ Route::middleware(['auth','role:administrateur'])->group(function(){
 });
 
 Auth::routes();
-
+Route::get('/userInfo/{id}/update', [userController::class, 'update'])->name('update');
+Route::post('/userInfo/{id}/update', [userController::class, 'update'])->name('update');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/change-password', [App\Http\Controllers\UserController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update-password');
 Route::get('documentation', [App\Http\Controllers\documentationController::class, 'index'])->name('documentation');
 
 

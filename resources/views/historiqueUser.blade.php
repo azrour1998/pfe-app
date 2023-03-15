@@ -27,7 +27,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Date</th>
                         <th scope="col">Actions</th>
-                            
+                        <th scope="col">suppression</th>   
                     </tr>
                 </thead>
                
@@ -46,10 +46,8 @@
                         <td style="text-align: center; vertical-align: middle;">{{$historiqueu['description']}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{$historiqueu['created_at']}}</td>
                         <td style="padding: 15px;">
-                            <a type="button"  href="{{ url('/historiqueUser/' . '/markAsSeen') }}" class="btn btn-outline-success px-3" data-toggle="tooltip" data-placement="top" title="Marquer comme lu"><i class=" fa-solid fa-eye" aria-hidden="true"></i></a>
-                            <a type="button" class="btn btn-outline-info px-3" data-toggle="tooltip" data-placement="top" title="Afficher l'article"><i class=" fa-solid fa-box" aria-hidden="true"></i></a>
-                            <a type="button" class="btn btn-outline-dark px-3" data-toggle="tooltip" data-placement="top" title="Afficher l'utilisateur"><i class=" fa-solid fa-user" aria-hidden="true"></i></a>
-                            <a type="button"  href="{{ url('/historiqueUser/' . '/deleteItem') }}"  class="btn btn-outline-danger px-3" data-toggle="tooltip" data-placement="top" title="Supprimer cette alert"><i class=" fa-solid fa-trash" aria-hidden="true"></i></a>
+                            <a type="button"  href="{{ url('/historiqueUser/' . '/markAsSeen') }}" class="btn btn-outline-success px-3" data-toggle="tooltip" data-placement="top" title="Marquer comme lu"><i class=" fa-solid fa-eye" aria-hidden="true"></i></a>  </td>
+                            <td style="padding: 15px;">      <a type="button"  href="{{ url('/historiqueUser/' . '/deleteItem') }}"  class="btn btn-outline-danger px-3" data-toggle="tooltip" data-placement="top" title="Supprimer cette alert"><i class=" fa-solid fa-trash" aria-hidden="true"></i></a>
 
                         </td>
                     </tr>

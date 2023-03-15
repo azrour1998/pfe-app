@@ -26,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+      DB::table('categories')->insert([
+        ['categorie' => 'Carte mère'],
+        ['categorie' => 'Imprimante'],
+        ['categorie' => 'Disque dur'],
+        ['categorie' => 'Unité centrale'],
+        ['categorie' => 'Écran dordinateur'],
+        ['categorie' => 'Souris (informatique)'],
+        ['categorie' => 'Ordinateurs portables'],
+        ['categorie' => 'Vidéoprojecteur'], 
+    ]);
         $data= Historique::orderBy('id', 'DESC')->get();
       $alert=  Article::where('quantity','==','minimal_quantity')->count();
         $notSeen= Historique::where('seen','=','0')->select()->count();
@@ -35,22 +45,22 @@ class HomeController extends Controller
         $countUsers=count(User::all());
         $date= date('Y-m-d H:i:s');
         $quantiteArticleStock=(Article::all())->count();
-        $quantityArticleCategorieA= Article::where('category','=','Santé et beauté')->count();
-        $pourcentageA=($quantityArticleCategorieA/$quantiteArticleStock) *100;
-        $quantityArticleCategorieB= Article::where('category','=','Article de sport')->count();
-        $pourcentageB=($quantityArticleCategorieB/$quantiteArticleStock) *100;
-        $quantityArticleCategorieC= Article::where('category','=','Article pour bébés et enfants')->count();
-        $pourcentageC=($quantityArticleCategorieC/$quantiteArticleStock) *100;
-        $quantityArticleCategorieD= Article::where('category','=','Produit artisanaux')->count();
-        $pourcentageD=($quantityArticleCategorieD/$quantiteArticleStock) *100;
-        $quantityArticleCategorieE= Article::where('category','=','Alimentation et boissons')->count();
-        $pourcentageE=($quantityArticleCategorieE/$quantiteArticleStock) *100;
-        $quantityArticleCategorieF= Article::where('category','=','informatique et bureau')->count();
-        $pourcentageF=($quantityArticleCategorieF/$quantiteArticleStock) *100;
-        $quantityArticleCategorieG= Article::where('category','=','Cuisine et maison')->count();
-        $pourcentageG=($quantityArticleCategorieG/$quantiteArticleStock) *100;
-         $quantityArticleCategorieH= Article::where('category','=','Bricolage, Jardin & animalerie')->count();
-        $pourcentageH=($quantityArticleCategorieH/$quantiteArticleStock) *100;
+        $quantityArticleCategorieA= Article::where('category','=','Carte mère')->count();
+        $pourcentageA=round(($quantityArticleCategorieA/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieB= Article::where('category','=','Imprimante')->count();
+        $pourcentageB=round(($quantityArticleCategorieB/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieC= Article::where('category','=','Disque dur')->count();
+        $pourcentageC=round(($quantityArticleCategorieC/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieD= Article::where('category','=','Unité centrale')->count();
+        $pourcentageD=round(($quantityArticleCategorieD/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieE= Article::where('category','=','Vidéoprojecteur')->count();
+        $pourcentageE=round(($quantityArticleCategorieE/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieF= Article::where('category','=','Ordinateurs portables')->count();
+        $pourcentageF=round(($quantityArticleCategorieF/$quantiteArticleStock) *100,2);
+        $quantityArticleCategorieG= Article::where('category','=','Écran dordinateur')->count();
+        $pourcentageG=round(($quantityArticleCategorieG/$quantiteArticleStock) *100,2);
+         $quantityArticleCategorieH= Article::where('category','=','Souris (informatique)')->count();
+        $pourcentageH=round(($quantityArticleCategorieH/$quantiteArticleStock) *100,2);
        
         return view("home",['countHistoric'=>$countHistoric,'alert'=>$alert,'countArticles'=>$countArticles,'countUsers'=>$countUsers,'fournisseurs'=>$countFournisseurs,'historiques'=>$data,'date'=>$date,'notSeen'=>$notSeen,'pourcentageA'=> $pourcentageA,'pourcentageB'=> $pourcentageB,'pourcentageC'=> $pourcentageC,'pourcentageD'=> $pourcentageD,'pourcentageE'=> $pourcentageE,'pourcentageG'=> $pourcentageG,'pourcentageH'=> $pourcentageH,'pourcentageF'=> $pourcentageF]);
     }
